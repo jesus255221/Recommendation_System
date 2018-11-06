@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <form>
+        <input type="radio" name="foo" value="1" checked="checked" />
+        <input type="radio" name="foo" value="0" />
+        <input name="bar" value="xxx" />
+        <select name="this">
+            <option value="hi" selected="selected">Hi</option>
+            <option value="ho">Ho</option>
+    </form>
+    <input type="button" id="MyBtn">
+    <script>
+        $("#MyBtn").on("click", function () {
+            console.log($('form').serializeArray());
+        });
+        /*document.getElementById("MyBtn").addEventListener("click", function(){
+            console.log("Hi");
+        });*/
+    </script>
+</body>
+
+</html>
