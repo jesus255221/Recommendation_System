@@ -8,6 +8,8 @@
     <link href="style.css" rel="stylesheet">
     <!-- FireBase -->
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
 <body>
@@ -33,28 +35,28 @@
     <div class="container" style="padding:10px 10px">
         <form action="professor_submit_success.html">
             <div class="form-group">
-                <label for="First Name">First Name</label>
-                <input name="First Name" type="text" class="form-control" id="FirstName" placeholder="First Name"
+                <label for="First_Name">First Name</label>
+                <input name="First_Name" type="text" class="form-control" id="FirstName" placeholder="First Name"
                     aria-required="true" required>
             </div>
             <div class="form-group">
-                <label for="Last Name">Last Name</label>
-                <input name="Last Name" type="text" class="form-control" id="LastName" placeholder="Last Name" required>
+                <label for="Last_Name">Last Name</label>
+                <input name="Last_Name" type="text" class="form-control" id="LastName" placeholder="Last Name" required>
             </div>
             <div class="form-group">
-                <label for="Serial Number">Serial number</label>
-                <input name="Serial Number" type="text" class="form-control" id="SerialNumber" placeholder="Enter your serial number"
+                <label for="Serial_Number">Serial number</label>
+                <input name="Serial_Number" type="text" class="form-control" id="SerialNumber" placeholder="Enter your serial number"
                     required>
                 <small class="form-text text-muted">You have to acquire it from your student.</small>
             </div>
             <div class="form-group">
-                <label for="Institute">Last Name</label>
-                <input name="Insittute" type="text" class="form-control" id="Institute" placeholder="Institute"
+                <label for="Institute">Institute</label>
+                <input name="Institute" type="text" class="form-control" id="Institute" placeholder="Institute"
                     required>
             </div>
             <div class="form-group">
                 <label>Recommendation</label>
-                <textarea class="form-control"></textarea>
+                <textarea class="form-control" id="textarea"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" id="submit">Submit</button>
         </form>
@@ -73,11 +75,12 @@
         var database = firebase.database();
         $("#submit").on("click", function () {
             var data = $('form').serializeArray();
-            var ref = database.ref('Recommendation');
             var json = [];
             data.forEach(function (value, index, array) {
                 json[value.name] = value.value;
             });
+            json["Recommendation"] = $("#textarea").val();
+            var ref = database.ref('Recommendation/' + json["Serial_Number"]);
             ref.push(json);
         });
     </script>
