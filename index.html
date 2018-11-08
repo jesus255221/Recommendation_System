@@ -47,41 +47,41 @@
   <div class="container" id="MainContainer">
     <form>
       <div class="form-group">
-        <label for="FirstName">First Name</label>
+        <label for="First Name">First Name</label>
         <input name="First Name" type="text" class="form-control" id="FirstName" aria-describedby="emailHelp"
           placeholder="First Name">
       </div>
       <div class="form-group">
-        <label for="LastName">Last Name</label>
+        <label for="Last Name">Last Name</label>
         <input name="Last Name" type="text" class="form-control" id="LastName" aria-describedby="emailHelp" placeholder="Last Name">
       </div>
       <div class="form-group">
-        <label for="SerialNumber">Serial number</label>
+        <label for="Serial Number">Serial number</label>
         <input name="Serial Number" type="text" class="form-control" id="SerialNumber" aria-describedby="emailHelp"
           placeholder="Enter your serial number">
       </div>
       <div class="form-group">
-        <label for="User_Email">School Email address</label>
+        <label for="User Email">School Email address</label>
         <input name="User Email" type="email" class="form-control" id="User_Email" aria-describedby="emailHelp"
           placeholder="Enter School email">
       </div>
       <div class="form-group">
         <h4 id="RLetterHelp" class="form-text text-muted">We'll send invatation links to the following email adresses
           and ask he/she to complete the letter</h4>
-        <label for="Email1">Recommandation Letter Email Adress 1</label>
-        <input name="Email1" type="email" class="form-control" id="Email1" aria-describedby="emailHelp" placeholder="Enter School email">
+        <label for="Email 1">Recommandation Letter Email Adress 1</label>
+        <input name="Email 1" type="email" class="form-control" id="Email1" aria-describedby="emailHelp" placeholder="Enter School email">
       </div>
       <div class="form-group">
-        <label for="Email2">Recommandation Letter Email Adress 2</label>
-        <input name="Email2" type="email" class="form-control" id="Email2" aria-describedby="emailHelp" placeholder="Enter School email">
+        <label for="Email 2">Recommandation Letter Email Adress 2</label>
+        <input name="Email 2" type="email" class="form-control" id="Email2" aria-describedby="emailHelp" placeholder="Enter School email">
       </div>
       <div class="form-group">
-        <label for="Email3">Recommandation Letter Email Adress 3</label>
-        <input name="Email3" type="email" class="form-control" id="Email3" aria-describedby="emailHelp" placeholder="Enter School email">
+        <label for="Email 3">Recommandation Letter Email Adress 3</label>
+        <input name="Email 3" type="email" class="form-control" id="Email3" aria-describedby="emailHelp" placeholder="Enter School email">
       </div>
       <div class="form-group">
-        <label for="Email4">Recommandation Letter Email Adress 4</label>
-        <input name="Email4" type="email" class="form-control" id="Email4" aria-describedby="emailHelp" placeholder="Enter School email">
+        <label for="Email 4">Recommandation Letter Email Adress 4</label>
+        <input name="Email 4" type="email" class="form-control" id="Email4" aria-describedby="emailHelp" placeholder="Enter School email">
       </div>
 
       <button type="submit" class="btn btn-primary" id="submit">Submit</button>
@@ -96,18 +96,20 @@
       databaseURL: "https://recommendationsystem-493fa.firebaseio.com/",
       storageBucket: "gs://recommendationsystem-493fa.appspot.com"
     };
+
     firebase.initializeApp(config);
 
     // Get a reference to the database service
     var database = firebase.database();
 
-
-
     $("#submit").on("click", function () {
-      alert($('form').serializeArray());
-      var ref = database.ref('User_data');
       var data = $('form').serializeArray();
-      ref.push(data);
+      var ref = database.ref('User_data');
+      var json = [];
+      data.forEach(function (value, index, array) {
+        json[value.name] = value.value;
+      });
+      ref.push(json);
     });
   </script>
 
