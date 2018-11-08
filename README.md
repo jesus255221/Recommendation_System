@@ -11,3 +11,6 @@ E24046200 陳磊恩
 * The system should provide the student an interface to fill in the contact info of his recommender, which will be used to send a link of the letter uploading interface.
 * The Student should not be able to modify the contact info after the link has been sent.
 * The system should make every letter corresponding to each applicant to the institute. The system should be able to store this recommendation letter for a given amount of time.
+
+## Usage
+`index.html` will post the data to the firebase and store it. `student_check_status.html` will retrieve the data from fire base and check out how many letters have been sent. `professor.html` will post the data to the firebase.
